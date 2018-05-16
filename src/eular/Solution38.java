@@ -42,7 +42,7 @@ public class Solution38 {
   }
 
   private boolean isDiffNums(String s) {
-    List<Character> bucket = new ArrayList<>();
+    List<Character> bucket = new ArrayList<Character>();
 
     if (s.charAt(0) != '0') {
       bucket.add(s.charAt(0));

@@ -35,7 +35,7 @@ public class Solution41 {
   }
 
   private boolean panDigitalCheck(String a) {
-    List<Character> arry = new ArrayList<>();
+    List<Character> arry = new ArrayList<Character>();
 
     for (char aa : a.toCharArray()) {
 
