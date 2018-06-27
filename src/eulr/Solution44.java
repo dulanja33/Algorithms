@@ -1,4 +1,4 @@
-package eular;
+package eulr;
 
 public class Solution44 {
 

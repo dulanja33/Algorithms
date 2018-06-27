@@ -1,4 +1,4 @@
-package eular;
+package eulr;
 
 import java.util.ArrayList;
 import java.util.HashMap;
