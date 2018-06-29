@@ -23,7 +23,7 @@ public class Solution43 {
     }
 
     private List<String> generatePandigit(int l, int h) {
-        List<String> nums = new ArrayList<String>();
+        List<String> nums = new ArrayList<>();
         StringBuilder builder = new StringBuilder();
         for (int i = l; i <= h; i++) {
             builder.append(i);
