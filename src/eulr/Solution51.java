@@ -1,17 +1,11 @@
 package eulr;
 
-/*By replacing the 1st digit of the 2-digit number *3, it turns out that six of the nine possible values: 13, 23, 43, 53, 73, and 83, are all prime.
-
-        By replacing the 3rd and 4th digits of 56**3 with the same digit, this 5-digit number is the first example having seven primes among the ten generated numbers, yielding the family: 56003, 56113, 56333, 56443, 56663, 56773, and 56993. Consequently 56003, being the first member of this family, is the smallest prime with this property.
-
-        Find the smallest prime which, by replacing part of the number (not necessarily adjacent digits) with the same digit, is part of an eight prime value family.*/
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Solution51 {
     private void solve() {
-        int n = 100000;
+        int n = 1000000;
         boolean[] isPrime = new boolean[n + 1];
         List<Integer> primes = new ArrayList<>();
         primeSieve(isPrime, n);
@@ -26,17 +20,14 @@ public class Solution51 {
         List<Integer> otherPrimes = new ArrayList<>();
         for (int i = 0; i < primes.size(); i++) {
             for (int j = i + 1; j < primes.size(); j++) {
-                if (primes.get(i) == 56003 && primes.get(j) == 56113) {
-                    System.out.println("debug");
-                }
 
-                if (String.valueOf(primes.get(i)).length() != String.valueOf(primes.get(j)).length() && primes.get(i) <= 9 && primes.get(j) <= 9 && (primes.get(j) - primes.get(i)) <= 9) {
+                if (String.valueOf(primes.get(i)).length() != String.valueOf(primes.get(j)).length()) {
                     break;
                 }
 
-                if (onlyOneNumberContains(primes.get(j) - primes.get(i))) {
+                if (primes.get(i) > 9 && primes.get(j) > 9 && (primes.get(j) - primes.get(i)) > 9 && onlyOneNumberContains(primes.get(j) - primes.get(i))) {
                     otherPrimes = getOtherPrimes(primes.get(j), primes.get(i), isPrime);
-                    if (otherPrimes.size() == 7) {
+                    if (otherPrimes.size() == 8) {
                         found = true;
                         break;
                     }
@@ -57,7 +48,7 @@ public class Solution51 {
 
     }
 
-    private static List<Integer> getOtherPrimes(int i, int j, boolean[] primes) {
+    private List<Integer> getOtherPrimes(int i, int j, boolean[] primes) {
         String si = String.valueOf(i);
         String ji = String.valueOf(j);
         List<Integer> genPrimes = new ArrayList<>();
@@ -72,8 +63,9 @@ public class Solution51 {
                 }
             }
 
+
             Integer val = Integer.valueOf(new String(numbs));
-            if (primes[val]) {
+            if (primes[val] && String.valueOf(val).length() == si.length()) {
                 genPrimes.add(val);
             }
         }
@@ -82,7 +74,7 @@ public class Solution51 {
 
     }
 
-    private static boolean onlyOneNumberContains(int n) {
+    private boolean onlyOneNumberContains(int n) {
         int len = String.valueOf(n).length();
         int number = -1;
         while (n > 0 && len > 0) {
@@ -103,8 +95,10 @@ public class Solution51 {
 
     public static void main(String args[]) {
         Solution51 solution = new Solution51();
+        long l = System.currentTimeMillis();
         solution.solve();
-        // System.out.println(onlyOneNumberContains(2112));
+        long l1 = System.currentTimeMillis();
+        System.out.print((l1 - l)/1000 +" Seconds");
     }
 
     //prime sieve of eratosthenes
