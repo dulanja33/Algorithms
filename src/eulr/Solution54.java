@@ -1,5 +1,7 @@
 package eulr;
 
+import java.util.Arrays;
+
 public class Solution54 {
 
     private static String INPUT = "8C TS KC 9H 4S 7D 2S 5D 3S AC\n" +
@@ -1006,28 +1008,217 @@ public class Solution54 {
 
     private void solve() {
         String[] lines = INPUT.split("\n");
-        Card[] p1Cards = new Card[lines.length * 5];
-        Card[] p2Cards = new Card[lines.length * 5];
+        int count = 0;
 
 
-        for (int i = 0; i < lines.length; i++) {
-            String[] cards = lines[i].split(" ");
+        for (String line : lines) {
+            Card[] p1Cards = new Card[5];
+            Card[] p2Cards = new Card[5];
+            String[] cards = line.split(" ");
             for (int j = 0; j < cards.length; j++) {
                 String value = cards[j].substring(0, 1);
                 String suit = cards[j].substring(1, 2);
                 Card c = new Card(value, suit);
                 if (j < 5) {
-                    p1Cards[j * (i + 1)] = c;
+                    p1Cards[j] = c;
                 } else {
-                    p2Cards[(j - 5) * (i + 1)] = c;
+                    p2Cards[(j - 5)] = c;
                 }
 
+            }
+
+
+            Arrays.sort(p1Cards);
+            Arrays.sort(p2Cards);
+
+            if (isRoyalFlush(p1Cards) != isRoyalFlush(p2Cards)) {
+                printCards(p1Cards, p2Cards);
+                System.out.println("royal");
+                if (isRoyalFlush(p1Cards) > isRoyalFlush(p2Cards)) count++;
+            } else if (isStraightFlush(p1Cards) != isStraightFlush(p2Cards)) {
+                printCards(p1Cards, p2Cards);
+                System.out.println("straight Flush");
+                if (isStraightFlush(p1Cards) > isStraightFlush(p2Cards)) count++;
+            } else if (isFourOfAKind(p1Cards) != isFourOfAKind(p2Cards)) {
+                printCards(p1Cards, p2Cards);
+                System.out.println("four of kind");
+                if (isFourOfAKind(p1Cards) > isFourOfAKind(p2Cards)) count++;
+            } else if (isFullHouse(p1Cards) != isFullHouse(p2Cards)) {
+                printCards(p1Cards, p2Cards);
+                System.out.println("full House");
+                if (isFullHouse(p1Cards) > isFullHouse(p2Cards)) count++;
+            } else if (isFlush(p1Cards) != isFlush(p2Cards)) {
+                printCards(p1Cards, p2Cards);
+                System.out.println("flush");
+                if (isFlush(p1Cards) > isFlush(p2Cards)) count++;
+            } else if (isStraight(p1Cards) != isStraight(p2Cards)) {
+                printCards(p1Cards, p2Cards);
+                System.out.println("straight");
+                if (isStraight(p1Cards) > isStraight(p2Cards)) count++;
+            } else if (isThreeOfKind(p1Cards) != isThreeOfKind(p2Cards)) {
+                printCards(p1Cards, p2Cards);
+                System.out.println("3 of kind");
+                if (isThreeOfKind(p1Cards) > isThreeOfKind(p2Cards)) count++;
+            } else if (isTwoPair(p1Cards) != isTwoPair(p2Cards)) {
+                printCards(p1Cards, p2Cards);
+                System.out.println("2 pairs");
+                if (isTwoPair(p1Cards) > isTwoPair(p2Cards)) count++;
+            } else if (isOnePair(p1Cards) != isOnePair(p2Cards)) {
+                printCards(p1Cards, p2Cards);
+                System.out.println("1 pair");
+                if (isOnePair(p1Cards) > isOnePair(p2Cards)) count++;
+            } else {
+                printCards(p1Cards, p2Cards);
+                System.out.println("high value");
+                if (getHigherValueHavingPlayer(p1Cards, p2Cards) == 1) count++;
             }
         }
 
 
+        System.out.println(count);
+
     }
 
+
+    private static void printCards(Card[] p1, Card[] p2) {
+        for (Card c : p1) {
+            System.out.print(c.value + c.suit + " ");
+        }
+
+        System.out.print("---");
+        for (Card c : p2) {
+            System.out.print(c.value + c.suit + " ");
+        }
+
+        System.out.println();
+    }
+
+    private static int getHigherValueHavingPlayer(Card[] p1, Card[] p2) {
+
+        int countP1 = p1[4].value;
+        int countP2 = p2[4].value;
+
+        if (countP1 > countP2) {
+            return 1;
+        } else if (countP1 < countP2) {
+            return 2;
+        } else {
+            return 0;
+        }
+
+    }
+
+
+    private static int isOnePair(Card[] p) {
+        int[] freq = new int[15];
+        for (Card aP : p) {
+            freq[aP.value]++;
+        }
+
+        for (int i = 0; i < freq.length; i++) {
+            if (freq[i] == 2) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private static int isTwoPair(Card[] p) {
+        int[] freq = new int[15];
+        for (Card aP : p) {
+            freq[aP.value]++;
+        }
+
+        int max = 0;
+        for (int i = 0; i < freq.length; i++) {
+            if (freq[i] == 2) {
+                max = Math.max(max, i);
+            }
+        }
+
+        if (max > 0) {
+            return max;
+        }
+
+        return -1;
+    }
+
+
+    private static int isThreeOfKind(Card[] p) {
+        int[] freq = new int[15];
+        for (Card aP : p) {
+            freq[aP.value]++;
+        }
+
+        for (int i = 0; i < freq.length; i++) {
+            if (freq[i] == 3) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private static int isStraight(Card[] p) {
+        int count = p[0].value;
+        for (Card c : p) {
+            if (c.value != count) {
+                return -1;
+            }
+
+            count++;
+        }
+
+        return p[4].value;
+    }
+
+    private static int isFlush(Card[] p) {
+        String suit = p[0].suit;
+        int count = 0;
+        for (Card aP : p) {
+            if (suit.equals(aP.suit)) {
+                count++;
+            }
+        }
+
+        return (count == p.length) ? p[4].value : -1;
+    }
+
+    private static int isFullHouse(Card[] p) {
+        return Math.max(isThreeOfKind(p), isOnePair(p));
+    }
+
+    private static int isFourOfAKind(Card[] p) {
+        int[] freq = new int[15];
+        for (Card aP : p) {
+            freq[aP.value]++;
+        }
+
+        for (int i = 0; i < freq.length; i++) {
+            if (freq[i] == 4) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private static int isStraightFlush(Card[] p) {
+        return (isFlush(p) > 0 && isStraight(p) > 0) ? p[4].value : -1;
+    }
+
+    private static int isRoyalFlush(Card[] p) {
+        int count = 10;
+        for (Card ap : p) {
+            if (ap.value != count) {
+                return -1;
+            }
+            count++;
+        }
+
+        return isFlush(p) > 0 ? p[4].value : -1;
+    }
 
     public static void main(String args[]) {
         Solution54 solution = new Solution54();
@@ -1037,13 +1228,35 @@ public class Solution54 {
         System.out.print((end - start) / 1000 + " Seconds");
     }
 
-    private static class Card {
-        String value;
+    private static class Card implements Comparable {
+        int value;
         String suit;
 
         Card(String value, String suit) {
-            this.value = value;
+            this.value = setValue(value);
             this.suit = suit;
+        }
+
+        private int setValue(String value) {
+            if ("T".equals(value)) {
+                return 10;
+            } else if ("J".equals(value)) {
+                return 11;
+            } else if ("Q".equals(value)) {
+                return 12;
+            } else if ("K".equals(value)) {
+                return 13;
+            } else if ("A".equals(value)) {
+                return 14;
+            } else {
+                return Integer.valueOf(value);
+            }
+        }
+
+
+        @Override
+        public int compareTo(Object o) {
+            return Integer.compare(((Card) o).value, this.value);
         }
     }
 }
