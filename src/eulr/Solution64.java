@@ -6,7 +6,7 @@ public class Solution64 {
 
 
         int oddCount = 0;
-        for (int n = 2; n < 10000; n++) {
+        for (int n = 23; n < 24; n++) {
             int s = 1, b, c;
             for (int i = 1; i * i <= n; i++) {
                 s = i;
@@ -19,12 +19,16 @@ public class Solution64 {
             b = n - s * s;
             c = s;
 
+            System.out.println(c);
+
             int count = 1;
             while (b != 1) {
                 int l = 1;
                 for (int i = b; (i - c) * (i - c) <= n; i += b) {
                     l = i;
                 }
+
+                System.out.println(l/b);
 
                 count++;
                 c = l - c;
@@ -35,13 +39,20 @@ public class Solution64 {
 
             }
 
+            int l =1;
+            for (int i = b; (i - c) * (i - c) <= n; i += b) {
+                l=i;
+            }
+
+            System.out.println(l);
+
             if (count % 2 != 0) {
                 oddCount++;
             }
 
         }
 
-        System.out.println(oddCount);
+       // System.out.println(oddCount);
 
     }
 
