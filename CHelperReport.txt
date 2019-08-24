@@ -1,2 +1,3 @@
-25 src/competition/Task.json
+32 src/competition/Even Digits.json
+1
 0

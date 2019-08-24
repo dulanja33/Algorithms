@@ -1,4 +1,4 @@
-output/*
+out/*
 cHelpOut/*
 .idea/
 .DS_Store
