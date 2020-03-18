@@ -1,0 +1,39 @@
+{
+  "name" : "Sherlock and Array",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "2\n3\n1 2 3\n4\n1 2 3 3\n",
+    "output" : "NO\nYES\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "3\n5\n1 1 4 1 1\n4\n2 0 0 0\n4\n0 0 2 0\n",
+    "output" : "YES\nYES\nYES\n",
+    "index" : 1,
+    "active" : true
+  } ],
+  "location" : "src/competition",
+  "vmArgs" : "-Xmx512M",
+  "mainClass" : "Main",
+  "taskClass" : "competition.SherlockAndArray",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.02.04",
+  "contestName" : "HackerRank - Algorithms - Search",
+  "truncate" : true,
+  "inputClass" : "utils.InputReader",
+  "outputClass" : "utils.OutputWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : true,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

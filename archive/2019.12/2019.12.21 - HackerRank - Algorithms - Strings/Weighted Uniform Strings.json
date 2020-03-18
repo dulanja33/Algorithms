@@ -1,0 +1,39 @@
+{
+  "name" : "Weighted Uniform Strings",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "abccddde\n6\n1\n3\n12\n5\n9\n10\n",
+    "output" : "Yes\nYes\nYes\nYes\nNo\nNo\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "aaabbbbcccddd\n5\n9\n7\n8\n12\n5\n",
+    "output" : "Yes\nNo\nYes\nYes\nNo\n",
+    "index" : 1,
+    "active" : true
+  } ],
+  "location" : "src/competition",
+  "vmArgs" : "-Xmx512M",
+  "mainClass" : "Main",
+  "taskClass" : "competition.WeightedUniformStrings",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2019.12.21",
+  "contestName" : "HackerRank - Algorithms - Strings",
+  "truncate" : true,
+  "inputClass" : "utils.InputReader",
+  "outputClass" : "utils.OutputWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : true,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

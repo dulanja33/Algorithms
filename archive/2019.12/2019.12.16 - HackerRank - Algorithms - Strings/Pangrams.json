@@ -1,0 +1,39 @@
+{
+  "name" : "Pangrams",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "We promptly judged antique ivory buckles for the next prize",
+    "output" : "pangram",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "We promptly judged antique ivory buckles for the prize",
+    "output" : "not pangram",
+    "index" : 1,
+    "active" : true
+  } ],
+  "location" : "src/competition",
+  "vmArgs" : "-Xmx512M",
+  "mainClass" : "Main",
+  "taskClass" : "competition.Pangrams",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2019.12.16",
+  "contestName" : "HackerRank - Algorithms - Strings",
+  "truncate" : true,
+  "inputClass" : "utils.InputReader",
+  "outputClass" : "utils.OutputWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : true,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

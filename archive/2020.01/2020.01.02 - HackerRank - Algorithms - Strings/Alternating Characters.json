@@ -1,0 +1,34 @@
+{
+  "name" : "Alternating Characters",
+  "testType" : "MULTI_NUMBER",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "5\nAAAA\nBBBBB\nABABABAB\nBABABA\nAAABBB\n",
+    "output" : "3\n4\n0\n0\n4\n",
+    "index" : 0,
+    "active" : true
+  } ],
+  "location" : "src/competition",
+  "vmArgs" : "-Xmx512M",
+  "mainClass" : "Main",
+  "taskClass" : "competition.AlternatingCharacters",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.01.02",
+  "contestName" : "HackerRank - Algorithms - Strings",
+  "truncate" : true,
+  "inputClass" : "utils.InputReader",
+  "outputClass" : "utils.OutputWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : true,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}

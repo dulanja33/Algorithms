@@ -1,0 +1,39 @@
+{
+  "name" : "Anagram",
+  "testType" : "MULTI_NUMBER",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "6\naaabbb\nab\nabc\nmnop\nxyyx\nxaxbbbxx\n",
+    "output" : "3\n1\n-1\n2\n0\n1\n",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "10\nhhpddlnnsjfoyxpciioigvjqzfbpllssuj\nxulkowreuowzxgnhmiqekxhzistdocbnyozmnqthhpievvlj\ndnqaurlplofnrtmh\naujteqimwfkjoqodgqaxbrkrwykpmuimqtgulojjwtukjiqrasqejbvfbixnchzsahpnyayutsgecwvcqngzoehrmeeqlgknnb\nlbafwuoawkxydlfcbjjtxpzpchzrvbtievqbpedlqbktorypcjkzzkodrpvosqzxmpad\ndrngbjuuhmwqwxrinxccsqxkpwygwcdbtriwaesjsobrntzaqbe\nubulzt\nvxxzsqjqsnibgydzlyynqcrayvwjurfsqfrivayopgrxewwruvemzy\nxtnipeqhxvafqaggqoanvwkmthtfirwhmjrbphlmeluvoa\ngqdvlchavotcykafyjzbbgmnlajiqlnwctrnvznspiwquxxsiwuldizqkkaawpyyisnftdzklwagv",
+    "output" : "10\n13\n5\n26\n15\n-1\n3\n13\n13\n-1",
+    "index" : 1,
+    "active" : true
+  } ],
+  "location" : "src/competition",
+  "vmArgs" : "-Xmx512M",
+  "mainClass" : "Main",
+  "taskClass" : "competition.Anagram",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2020.01.06",
+  "contestName" : "HackerRank - Algorithms - Strings",
+  "truncate" : true,
+  "inputClass" : "utils.InputReader",
+  "outputClass" : "utils.OutputWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : true,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}
